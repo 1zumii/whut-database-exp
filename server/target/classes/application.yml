@@ -1,0 +1,10 @@
+server:
+  port: 6666
+# datasource
+spring:
+  datasource:
+    username: root
+    password: sql123
+    url: jdbc:mysql://127.0.0.1:3306/attendance?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource

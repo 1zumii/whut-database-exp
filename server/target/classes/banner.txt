@@ -1,0 +1,17 @@
+${AnsiColor.BRIGHT_MAGENTA}
+WWWWWWWW                           WWWWWWWWHHHHHHHHH     HHHHHHHHHUUUUUUUU     UUUUUUUUTTTTTTTTTTTTTTTTTTTTTTT
+W::::::W                           W::::::WH:::::::H     H:::::::HU::::::U     U::::::UT:::::::::::::::::::::T
+W::::::W                           W::::::WH:::::::H     H:::::::HU::::::U     U::::::UT:::::::::::::::::::::T
+W::::::W                           W::::::WHH::::::H     H::::::HHUU:::::U     U:::::UUT:::::TT:::::::TT:::::T
+ W:::::W           WWWWW           W:::::W   H:::::H     H:::::H   U:::::U     U:::::U TTTTTT  T:::::T  TTTTTT
+  W:::::W         W:::::W         W:::::W    H:::::H     H:::::H   U:::::U     U:::::U         T:::::T
+   W:::::W       W:::::::W       W:::::W     H::::::HHHHH::::::H   U:::::U     U:::::U         T:::::T
+    W:::::W     W:::::::::W     W:::::W      H:::::::::::::::::H   U:::::U     U:::::U         T:::::T
+     W:::::W   W:::::W:::::W   W:::::W       H:::::::::::::::::H   U:::::U     U:::::U         T:::::T
+      W:::::W W:::::W W:::::W W:::::W        H::::::HHHHH::::::H   U:::::U     U:::::U         T:::::T
+       W:::::W:::::W   W:::::W:::::W         H:::::H     H:::::H   U:::::U     U:::::U         T:::::T
+        W:::::::::W     W:::::::::W          H:::::H     H:::::H   U::::::U   U::::::U         T:::::T
+         W:::::::W       W:::::::W         HH::::::H     H::::::HH U:::::::UUU:::::::U       TT:::::::TT
+          W:::::W         W:::::W          H:::::::H     H:::::::H  UU:::::::::::::UU        T:::::::::T
+           W:::W           W:::W           H:::::::H     H:::::::H    UU:::::::::UU          T:::::::::T
+            WWW             WWW            HHHHHHHHH     HHHHHHHHH      UUUUUUUUU            TTTTTTTTTTT

@@ -13,7 +13,7 @@
 		"coverView": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.3",
+	"libVersion": "2.9.4",
 	"appid": "wx90257a06ca638e67",
 	"projectname": "front",
 	"debugOptions": {

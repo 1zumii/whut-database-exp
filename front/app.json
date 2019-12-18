@@ -3,7 +3,8 @@
     "pages/checkIn/checkIn",
     "pages/index/index",
     "pages/statistics/statistics",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

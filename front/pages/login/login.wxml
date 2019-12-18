@@ -1,0 +1,30 @@
+<!--pages/login/login.wxml-->
+<view class="main">
+    <view class="title">登 录</view>
+    <view class="info-input-wrapper">
+        <van-icon name="user-o" color="#1296db" size="20px"/>
+        <input
+            class="info-input"
+            value="{{username}}"
+            placeholder="用户名"
+        />
+    </view>
+    <view class="info-input-wrapper">
+        <van-icon name="bulb-o" color="#1296db" size="20px"/>
+        <input
+            class="info-input"
+            type="password"
+            value="{{password}}"
+            placeholder="密码"
+        />
+    </view>
+    
+    <view class="down-row">
+        <navigator
+            class="we-login"
+        >微信登录</navigator>
+        <navigator
+            class="sign-in"
+        >注册账号</navigator>
+    </view>
+</view>

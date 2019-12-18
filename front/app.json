@@ -1,13 +1,41 @@
 {
   "pages": [
+    "pages/checkIn/checkIn",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/statistics/statistics",
+    "pages/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "考勤小助手",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color":"#8a8a8a",
+    "selectedColor":"#1296db",
+    "backgroundColor": "#ffffff",
+    "borderStyle":"white",
+    "list": [
+      {
+        "pagePath":"pages/statistics/statistics",
+        "text":"统计",
+        "iconPath":"./images/statistics.png",
+        "selectedIconPath":"./images/statistics_active.png"
+      },
+      {
+        "pagePath":"pages/checkIn/checkIn",
+        "text":"打卡",
+        "iconPath":"./images/check.png",
+        "selectedIconPath":"./images/check_active.png"
+      },
+      {
+        "pagePath":"pages/setting/setting",
+        "text":"设置",
+        "iconPath":"./images/setting.png",
+        "selectedIconPath":"./images/setting_active.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -1,30 +1,41 @@
 <!--pages/login/login.wxml-->
 <view class="main">
-    <view class="title">登 录</view>
+    <view class="title">用 户 登 录</view>
     <view class="info-input-wrapper">
-        <van-icon name="user-o" color="#1296db" size="20px"/>
+        <!-- <van-icon name="user-o" color="#1296db" size="20px"/> -->
+        <mp-icon icon="me" size="{{18}}" color="#1296db"/>
         <input
             class="info-input"
             value="{{username}}"
             placeholder="用户名"
+            bindinput="handleInputUsernameChange"
         />
     </view>
     <view class="info-input-wrapper">
-        <van-icon name="bulb-o" color="#1296db" size="20px"/>
+        <!-- <van-icon name="bulb-o" color="#1296db" size="20px"/> -->
+        <mp-icon icon="lock" size="{{18}}" color="#1296db"/>
         <input
             class="info-input"
             type="password"
             value="{{password}}"
             placeholder="密码"
+            bindinput="handleInputPasswordChange"
         />
     </view>
+    <view class="submit-button-wrapper">
+        <button 
+            class="submit-button"
+        >
+            <text class="button-text">登 录</text>
+        </button>
+    </view>
     
-    <view class="down-row">
+    <view class="bottom-row">
         <navigator
             class="we-login"
         >微信登录</navigator>
         <navigator
             class="sign-in"
-        >注册账号</navigator>
+        >注册学生</navigator>
     </view>
 </view>

@@ -8,5 +8,10 @@ Page({
     username:'',
     password:'',
   },
-  
+  handleInputUsernameChange:function(event){
+    this.setData({username:event.detail.value});
+  },
+  handleInputPasswordChange:function(event){
+    this.setData({password:event.detail.value});
+  }
 })

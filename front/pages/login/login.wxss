@@ -9,6 +9,7 @@
 .main .title {
     font-size: 60rpx;
     margin-bottom: 30rpx;
+    font-weight: 100;
 }
 .main .info-input-wrapper {
     display: flex;
@@ -22,6 +23,27 @@
 .main .info-input {
     width: 70%;
 }
-.info-input-wrapper van-icon {
-    margin-right: 10rpx;
+.info-input-wrapper mp-icon {
+    margin-right:18rpx;
+}
+.submit-button-wrapper {
+    margin-top: 70rpx;
+}
+.submit-button {
+    background-color: #1296db;
+    border-radius: 50px;
+    font-weight: 100;
+    color: white;
+}
+.bottom-row {
+    margin-top: 70rpx;
+    color: #1296db;
+    font-weight: 100;
+    width: 500rpx;
+}
+.bottom-row .we-login {
+    float: left;
+}
+.bottom-row .sign-in {
+    float: right;
 }

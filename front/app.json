@@ -4,7 +4,8 @@
     "pages/index/index",
     "pages/statistics/statistics",
     "pages/setting/setting",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/signin/signin"
   ],
   "window": {
     "backgroundTextStyle": "light",

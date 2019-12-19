@@ -13,5 +13,24 @@ Page({
   },
   handleInputPasswordChange:function(event){
     this.setData({password:event.detail.value});
+  },
+  handleLoginByWechat:function(){
+    wx.getUserInfo({
+      withCredentials: 'false',
+      lang: 'zh_CN',
+      // timeout:10000,
+      success: (result)=>{
+        console.log(result)
+      },
+      fail: (error)=>{
+        console.log(error);
+      }
+    });
+  },
+  handleLoginByUser:function(){
+    
+  },
+  onGotUserInfo:function(value){
+    const {detail} = value;
   }
 })

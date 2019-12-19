@@ -32,7 +32,7 @@
 .submit-button {
     background-color: #1296db;
     border-radius: 50px;
-    font-weight: 100;
+    font-weight: 150;
     color: white;
 }
 .bottom-row {
@@ -46,4 +46,13 @@
 }
 .bottom-row .sign-in {
     float: right;
+}
+.bottom-row .we-login-dev {
+    float: left;
+    padding: 0px;
+    margin: 0px;
+    width: 170rpx;
+    color: #1296db;
+    background-color: white;
+    font-weight: 100;
 }

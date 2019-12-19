@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-field": "../../dist/vant-weapp/field/index",
+    "van-cell": "../../dist/vant-weapp/cell/index",
+    "van-radio": "../../dist/vant-weapp/radio/index",
+    "van-radio-group": "../../dist/vant-weapp/radio-group/index"
+  },
+  "navigationBarTitleText":"注册学生用户"
+}

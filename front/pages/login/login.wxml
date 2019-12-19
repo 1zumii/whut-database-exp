@@ -25,17 +25,27 @@
     <view class="submit-button-wrapper">
         <button 
             class="submit-button"
+            bindtap="handleLoginByUser"
         >
             <text class="button-text">登 录</text>
         </button>
     </view>
     
     <view class="bottom-row">
-        <navigator
+        <button
+            class="we-login-dev"
+            open-type="getUserInfo"
+            lang="zh_CN"
+            bindgetuserinfo="onGotUserInfo"
+        >微信登录</button>
+        <!-- <text
             class="we-login"
-        >微信登录</navigator>
+            bindtap="handleLoginByWechat"
+        >微信登录</text> -->
         <navigator
             class="sign-in"
+            open-type="navigate"
+            url="../signin/signin"
         >注册学生</navigator>
     </view>
 </view>

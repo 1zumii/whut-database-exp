@@ -6,5 +6,7 @@ import database.exp.aa.util.AaResponse;
 import java.util.Map;
 
 public interface LoginServiceInterface {
-    public AaResponse<Map<String,Object>> createUser(User user);
+    AaResponse<Map<String,Object>> createUser(User user);
+
+    AaResponse<Map<String,Object>> queryAllClasses();
 }

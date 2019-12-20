@@ -1,43 +1,91 @@
 <!--pages/signin/signin.wxml-->
+<van-notify id="van-notify" />
 <view class="field-title">用户信息</view>
-<van-field
-    value="{{ username }}"
-    label="用户名"
-    placeholder="请输入用户名"
-    border="{{ false }}"
-    bind:change="onChange"
-/>
-<van-field
-    value="{{ password }}"
-    label="密码"
-    placeholder="请输入密码"
-    border="{{ false }}"
-    bind:change="onChange"
-/>
-<van-field
-    value="{{ checkPassword }}"
-    label="确认密码"
-    placeholder="请确认密码"
-    border="{{ false }}"
-    bind:change="onChange"
-/>
+<van-radio-group>
+    <van-field
+        value="{{ username }}"
+        label="用户名"
+        placeholder="请输入用户名"
+        border="{{ true }}"
+        bind:change="onChange"
+    />
+    <van-field
+        value="{{ password }}"
+        label="密码"
+        placeholder="请输入密码"
+        border="{{ true }}"
+        bind:change="onChange"
+    />
+    <van-field
+        value="{{ checkPassword }}"
+        label="确认密码"
+        placeholder="请确认密码"
+        border="{{ false }}"
+        bind:change="onChange"
+    />
+</van-radio-group>
+
 <view class="field-title">学生信息</view>
-<van-field
-    value="{{ username }}"
-    label="型名"
-    placeholder="请输入姓名"
-    border="{{ false }}"
-    bind:change="onChange"
-/>
-<van-cell
-    title="性别"
->
-    <van-radio-group
-        class="gender-group"
-        value="{{gender}}"
-        bind:change="handleGenderChange"
+<van-radio-group>
+    <van-field
+        value="{{ stuNum }}"
+        label="学号"
+        placeholder="请输入学号"
+        border="{{ true }}"
+        bind:change="onChange"
+    />
+    <van-field
+        value="{{ username }}"
+        label="姓名"
+        placeholder="请输入姓名"
+        border="{{ true }}"
+        bind:change="onChange"
+    />
+    <van-field
+        value="{{ genderMap?genderMap[gender]:null }}"
+        label="性别"
+        placeholder="请选择性别"
+        border="{{ true }}"
+        disabled="{{ true }}"
+        bind:tap="showGenderPopup"
+    />
+    <van-popup
+        show="{{ genderPopupVisible }}"
+        round="{{false}}"
+        position="bottom"
+        bind:click-overlay="closeGenderPopup"
     >
-        <van-radio name="{{1}}">男</van-radio>
-        <van-radio name="{{0}}">女</van-radio>
-    </van-radio-group>
-</van-cell>
+        <van-picker
+            columns="{{ genderMap }}"
+            visible-item-count="{{3}}"
+            bind:change="handleGenderChange"
+        />
+    </van-popup>
+    <van-field
+        value="{{ phone }}"
+        label="电话"
+        placeholder="请输入电话"
+        border="{{ true }}"
+        bind:change="onChange"
+    />
+    <van-field
+        value="{{ classDataMap?classDataMap[classId].className:null }}"
+        label="班级"
+        placeholder="请选择班级"
+        border="{{ false }}"
+        disabled="{{ true }}"
+        bind:tap="flipClassIdPopup"
+    />
+    <van-popup
+        show="{{ classPopupVisible }}"
+        round="{{false}}"
+        position="bottom"
+        bind:click-overlay="flipClassIdPopup"
+    >
+        <van-picker
+            columns="{{classNameMap}}"
+            visible-item-count="{{3}}"
+            bind:change="handleClassIdChange"
+        />
+    </van-popup>
+</van-radio-group>

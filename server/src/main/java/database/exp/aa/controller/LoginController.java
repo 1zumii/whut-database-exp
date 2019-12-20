@@ -42,4 +42,9 @@ public class LoginController {
         User insertUser = (User)requestM.get("user");
         return loginService.createUser(insertUser);
     }
+
+    @PostMapping("/getAllClasses")
+    public AaResponse<Map<String,Object>> getAllClasses(){
+        return loginService.queryAllClasses();
+    }
 }

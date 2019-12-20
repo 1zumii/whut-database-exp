@@ -2,8 +2,9 @@
   "usingComponents": {
     "van-field": "../../dist/vant-weapp/field/index",
     "van-cell": "../../dist/vant-weapp/cell/index",
-    "van-radio": "../../dist/vant-weapp/radio/index",
-    "van-radio-group": "../../dist/vant-weapp/radio-group/index"
+    "van-picker": "../../dist/vant-weapp/picker/index",
+    "van-popup": "../../dist/vant-weapp/popup/index",
+    "van-notify": "../../dist/vant-weapp/notify/index"
   },
   "navigationBarTitleText":"注册学生用户"
 }

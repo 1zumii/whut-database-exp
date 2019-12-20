@@ -9,6 +9,3 @@ page {
     font-weight: normal;
     font-size: 16px;
 }
-.gender-group van-radio {
-    width: 50rpx;
-}

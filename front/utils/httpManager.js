@@ -1,6 +1,6 @@
 const root = "http://localhost:9975"
 
-export const AaHostPost = (url,data) => {
+export const AaHostPost = (url,data={}) => {
     console.log('send: ',root+url);
     return new Promise((resolve,reject)=>{
       wx.request({

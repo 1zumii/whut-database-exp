@@ -32,5 +32,6 @@ Page({
   },
   onGotUserInfo:function(value){
     const {detail} = value;
+    console.log("onGotUserInfo",detail);
   }
 })

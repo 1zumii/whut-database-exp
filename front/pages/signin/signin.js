@@ -12,7 +12,7 @@ Page({
 		username: '',
 		password: '',
 		checkPassword: '',
-		userInfo:null,
+		userInfo: null,
 		//学生信息
 		stuNum: '',
 		name: '',
@@ -77,92 +77,93 @@ Page({
 		this.setData({ classId: classDataMap[index].id });
 	},
 	//用户名
-	handleUsernameChange:function(event){
-		this.setData({username:event.detail});
+	handleUsernameChange: function (event) {
+		this.setData({ username: event.detail });
 	},
-	handleGotUserInfo:function(event){
-		const {userInfo} = event.detail;
+	handleGotUserInfo: function (event) {
+		const { userInfo } = event.detail;
 		this.setData({
-			username:userInfo.nickName,
-			userInfo:userInfo
+			username: userInfo.nickName,
+			userInfo: userInfo
 		});
 	},
 	//密码
-	handlePasswordChange:function(event){
-		this.setData({password:event.detail});
+	handlePasswordChange: function (event) {
+		this.setData({ password: event.detail });
 	},
 	//确认密码
-	handleCheckPasswordChange:function(event){
-		this.setData({checkPassword:event.detail});
+	handleCheckPasswordChange: function (event) {
+		this.setData({ checkPassword: event.detail });
 	},
 	//学号
-	handleStuNumChange:function(event){
-		this.setData({stuNum:event.detail});
+	handleStuNumChange: function (event) {
+		this.setData({ stuNum: event.detail });
 	},
 	//姓名
-	handleNameChange:function(event){
-		this.setData({name:event.detail});
+	handleNameChange: function (event) {
+		this.setData({ name: event.detail });
 	},
 	//电话
-	handlePhoneChange:function(event){
-		this.setData({phone:event.detail});
+	handlePhoneChange: function (event) {
+		this.setData({ phone: event.detail });
 	},
 	//提交
-	handleSubmitButtonClick:function(){
-		if(this.validateInfo()){
+	handleSubmitButtonClick: function () {
+		if (this.validateInfo()) {
 			const {
-				username,password,stuNum,
-				name,gender,phone,classId,
+				username, password, stuNum,
+				name, gender, phone, classId,
 			} = this.data;
 			let parameters = {
-				username,password,stuNum,
-				name,gender,phone,classId,
+				username, password, stuNum,
+				name, gender, phone, classId,
 			};
-			if(this.data.userInfo){
+			if (this.data.userInfo) {
 				parameters.avatar = this.data.userInfo.avatar;
 			}
 			AaHostPost(
 				"/login/createNewStudent",
-				{...parameters}
-			).then((json)=>{
-				if(json.code === 0){
-					setUserToken(json.data.userId);
+				{ ...parameters }
+			).then((json) => {
+				if (json.code === 0) {
+					const {userId,isAdmin} = json.data;
+					setUserToken({userId,isAdmin});
 					wx.switchTab({
 						url: '../checkIn/checkIn',
-						fail: ()=>{
+						fail: () => {
 							Notify({
-								type:"danger",
-								message:"注册成功，但页面跳转失败"
+								type: "danger",
+								message: "注册成功，但页面跳转失败"
 							})
 						}
 					});
-				}else
+				} else
 					throw json;
-			}).catch((error)=>{
+			}).catch((error) => {
 				Notify({
-					type:"danger",
-					message:"学生用户创建失败"
+					type: "danger",
+					message: "学生用户创建失败"
 				});
 			})
 		}
 	},
-	validateInfo:function(){
+	validateInfo: function () {
 		//必填项校验
 		const attributeList = [
-			'username','password','checkPassword',
-			'stuNum','name','gender','phone','classId'
+			'username', 'password', 'checkPassword',
+			'stuNum', 'name', 'gender', 'phone', 'classId'
 		];
-		for(let e of attributeList){
-			if(
+		for (let e of attributeList) {
+			if (
 				!this.data[e] &&
 				this.data[e] !== 0
-			){
-				Notify({type:'danger',message:`请检查是否遗漏 (${e})`});
+			) {
+				Notify({ type: 'danger', message: `请检查是否遗漏 (${e})` });
 				return false;
 			}
 		}
-		if(this.data.password!==this.data.checkPassword){
-			Notify({type: 'danger', message: '两次密码不一致'});
+		if (this.data.password !== this.data.checkPassword) {
+			Notify({ type: 'danger', message: '两次密码不一致' });
 			return false;
 		}
 		return true;

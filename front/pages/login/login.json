@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "mp-icon": "../../dist/weui/icon/icon"
+    "mp-icon": "../../dist/weui/icon/icon",
+    "van-notify": "../../dist/vant-weapp/notify/index"
   }
 }

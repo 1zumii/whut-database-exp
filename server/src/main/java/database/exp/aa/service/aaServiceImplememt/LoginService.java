@@ -10,10 +10,10 @@ import database.exp.aa.pojo.Student;
 import database.exp.aa.pojo.User;
 import database.exp.aa.service.aaServiceInterface.LoginServiceInterface;
 import database.exp.aa.util.AaResponse;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -61,10 +61,29 @@ public class LoginService implements LoginServiceInterface {
         u.setPassword((String)parameters.get("password"));
         u.setStudentId(s.getStudentId());
         userMapper.createUser(u);
+        boolean isAdmin = (u.getStudentId() == -1);
         Map<String,Object> data =
                 new ImmutableMap.Builder<String,Object>()
                         .put("userId",u.getId())
+                        .put("isAdmin",isAdmin)
                         .build();
         return AaResponse.createBySuccess(data);
+    }
+
+    @Override
+    public AaResponse<Map<String, Object>> loginByUser(User user) {
+        User res = userMapper.queryUserByUnPw(user);
+        if(res!=null){
+            boolean isAdmin = (res.getStudentId() == -1);
+            Map<String,Object> data =
+                    new ImmutableMap.Builder<String,Object>()
+                            .put("userId",user.getId())
+                            .put("isAdmin",isAdmin)
+                            .build();
+            return AaResponse.createBySuccess(data);
+        }else {
+            return AaResponse.createByErrorMessage("登录失败");
+        }
+
     }
 }

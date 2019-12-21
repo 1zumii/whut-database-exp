@@ -12,4 +12,6 @@ public interface LoginServiceInterface {
     AaResponse<Map<String,Object>> queryAllClasses();
 
     AaResponse<Map<String,Object>> createNewStudent(JSONObject parameters);
+
+    AaResponse<Map<String,Object>> loginByUser(User user);
 }

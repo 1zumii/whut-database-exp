@@ -15,4 +15,4 @@ W::::::W                           W::::::WHH::::::H     H::::::HHUU:::::U     U
           W:::::W         W:::::W          H:::::::H     H:::::::H  UU:::::::::::::UU        T:::::::::T
            W:::W           W:::W           H:::::::H     H:::::::H    UU:::::::::UU          T:::::::::T
             WWW             WWW            HHHHHHHHH     HHHHHHHHH      UUUUUUUUU            TTTTTTTTTTT
-------- Attendance Assistant (version 0.0.1) -------
+------- Attendance Assistant -------

@@ -127,7 +127,7 @@ Page({
 			).then((json) => {
 				if (json.code === 0) {
 					const {userId,isAdmin,userInfo,studentInfo} = json.data;
-					setUserToken({userId,isAdmin});
+					setUserToken({userId,isAdmin,userInfo,studentInfo});
 					wx.switchTab({
 						url: '../checkIn/checkIn',
 						fail: () => {

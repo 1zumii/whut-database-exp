@@ -1,1 +1,28 @@
 /* pages/checkIn/checkIn.wxss */
+.main {
+    padding:170rpx 70rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.course-now {
+    width: 100%;
+    text-align: center;
+    font-size: 90rpx;
+    margin-bottom: 30rpx;
+    font-weight: 100;
+}
+.check-button {
+    margin-top:170rpx;
+    border-radius:100%;
+    width:180px;
+    height:180px;
+    background-color: white;
+    border: 1px solid #1296db;
+    box-shadow: 0px 0px 10px 2px rgba(18,150,219,0.25);
+    padding-top: 65px;
+    color: #1296db;
+    font-weight: 100;
+    font-size: xx-large;
+}

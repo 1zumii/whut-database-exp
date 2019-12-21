@@ -1,2 +1,12 @@
 <!--pages/checkIn/checkIn.wxml-->
-<text>pages/checkIn/checkIn.wxml</text>
+<view class="main">
+    <view class="course-now">{{courseNow}}</view>
+    <button
+        class="check-button"
+        loading="{{buttonLoading}}"
+        disabled="{{buttonDisable}}"
+        bindtap="onTap"
+    >
+        {{buttonText}}
+    </button>
+</view>

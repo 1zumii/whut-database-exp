@@ -97,6 +97,5 @@ public class LoginService implements LoginServiceInterface {
         }else {
             return AaResponse.createByErrorMessage("登录失败");
         }
-
     }
 }

@@ -8,5 +8,5 @@ import java.util.Date;
 public class Record {
     private Date date;
     private int userId;
-    private int classId;
+    private int courseId;
 }

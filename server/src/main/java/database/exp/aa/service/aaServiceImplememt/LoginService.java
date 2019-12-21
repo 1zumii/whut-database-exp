@@ -81,7 +81,7 @@ public class LoginService implements LoginServiceInterface {
             Map<String,Object> data;
             if(s!=null){
                  data = new ImmutableMap.Builder<String,Object>()
-                    .put("userId",user.getId())
+                    .put("userId",res.getId())
                     .put("userInfo",res)
                     .put("studentInfo",s)
                     .put("isAdmin",isAdmin)

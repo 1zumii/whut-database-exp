@@ -1,5 +1,8 @@
 {
   "usingComponents": {
     "van-notify": "../../dist/vant-weapp/notify/index"
-  }
+  },
+  "enablePullDownRefresh":true,
+  "backgroundColor":"#ffffff",
+  "backgroundTextStyle":"dark"
 }

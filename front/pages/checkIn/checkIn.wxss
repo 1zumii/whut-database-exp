@@ -9,7 +9,7 @@
 .course-now {
     width: 100%;
     text-align: center;
-    font-size: 90rpx;
+    font-size: 80rpx;
     margin-bottom: 30rpx;
     font-weight: 100;
 }

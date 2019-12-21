@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Options;
 
 public interface UserMapper {
     @Insert(
-        "INSERT INTO users(username,password,studentId"+
+        "INSERT INTO users(username,password,studentId)"+
         "VALUES(#{username},#{password},#{studentId})"
     )
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")

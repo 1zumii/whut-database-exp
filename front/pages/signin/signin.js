@@ -1,5 +1,6 @@
 // pages/signin/signin.js
 import { AaHostPost } from '../../utils/httpManager'
+import { setUserToken } from '../../utils/userTokenManager'
 import Notify from '../../dist/vant-weapp/notify/notify';
 
 Page({
@@ -109,7 +110,40 @@ Page({
 	//提交
 	handleSubmitButtonClick:function(){
 		if(this.validateInfo()){
-			
+			const {
+				username,password,stuNum,
+				name,gender,phone,classId,
+			} = this.data;
+			let parameters = {
+				username,password,stuNum,
+				name,gender,phone,classId,
+			};
+			if(this.data.userInfo){
+				parameters.avatar = this.data.userInfo.avatar;
+			}
+			AaHostPost(
+				"/login/createNewStudent",
+				{...parameters}
+			).then((json)=>{
+				if(json.code === 0){
+					setUserToken(json.data.userId);
+					wx.switchTab({
+						url: '../checkIn/checkIn',
+						fail: ()=>{
+							Notify({
+								type:"danger",
+								message:"注册成功，但页面跳转失败"
+							})
+						}
+					});
+				}else
+					throw json;
+			}).catch((error)=>{
+				Notify({
+					type:"danger",
+					message:"学生用户创建失败"
+				});
+			})
 		}
 	},
 	validateInfo:function(){
@@ -119,7 +153,10 @@ Page({
 			'stuNum','name','gender','phone','classId'
 		];
 		for(let e of attributeList){
-			if(!this.data[e]){
+			if(
+				!this.data[e] &&
+				this.data[e] !== 0
+			){
 				Notify({type:'danger',message:`请检查是否遗漏 (${e})`});
 				return false;
 			}

@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class ClassA {
-    private Integer id;
+    private int id;
     private String className;
     private String major;
     private int classSize;
-    private Student monitor;
+    private int monitor;
 }

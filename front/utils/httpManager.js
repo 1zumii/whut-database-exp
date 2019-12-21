@@ -1,7 +1,7 @@
 const root = "http://localhost:9975"
 
 export const AaHostPost = (url,data={}) => {
-    console.log('send: ',root+url);
+    console.log('send: ',root+url,'\t',data);
     return new Promise((resolve,reject)=>{
       wx.request({
         url:root+url,

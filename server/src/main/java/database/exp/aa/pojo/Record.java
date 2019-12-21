@@ -7,6 +7,6 @@ import java.util.Date;
 @Data
 public class Record {
     private Date date;
-    private User user;
-    private ClassA classA;
+    private int userId;
+    private int classId;
 }

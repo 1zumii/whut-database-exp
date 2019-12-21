@@ -1,7 +1,6 @@
 package database.exp.aa.mapper;
 
 import database.exp.aa.pojo.ClassA;
-import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -15,9 +14,7 @@ public interface ClassMapper {
         @Result(column="className",property="className"),
         @Result(column="major",property="major"),
         @Result(column="classSize",property="classSize"),
-        @Result(column="monitor",property="monitor",one=@One(
-            select = "database.exp.aa.mapper.StudentMapper.queryStudentById"
-        )),
+        @Result(column="monitor",property="monitor"),
     })
     List<ClassA> queryAllClasses();
 }

@@ -38,7 +38,14 @@ Page({
 	//生命周期函数--监听页面显示
 	onShow: function (options) {
 		console.log("onShow", new Date().getTime());
-		if(getUserToken()){
+		if (getUserToken()) {
+			this.fetchCourseInfo();
+		}
+	},
+	//页面相关事件处理函数--监听用户下拉动作
+	onPullDownRefresh: function () {
+		console.log("onPullDownRefresh", new Date().getTime());
+		if (getUserToken()) {
 			this.fetchCourseInfo();
 		}
 	},

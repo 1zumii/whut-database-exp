@@ -18,7 +18,7 @@ public class CheckInController {
     CheckInService checkInService;
 
     @PostMapping("/getCourseInfoByUser")
-    public void getCourseInfoByUser(@RequestBody JSONObject parameters){
-
+    public AaResponse<Map<String, Object>> getCourseInfoByUser(@RequestBody JSONObject parameters){
+        return checkInService.getCourseInfoByUser(parameters);
     }
 }

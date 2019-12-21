@@ -38,8 +38,8 @@ Page({
 				{ username, password }
 			).then((json) => {
 				if (json.code === 0) {
-					const {userId,isAdmin} = json.data;
-					setUserToken({userId,isAdmin});
+					const {userId,isAdmin,userInfo,studentInfo} = json.data;
+					setUserToken({userId,isAdmin,userInfo,studentInfo});
 					wx.switchTab({
 						url: '../checkIn/checkIn',
 						fail: () => {

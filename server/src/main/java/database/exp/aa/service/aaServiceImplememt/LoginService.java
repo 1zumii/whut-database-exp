@@ -65,6 +65,8 @@ public class LoginService implements LoginServiceInterface {
         Map<String,Object> data =
                 new ImmutableMap.Builder<String,Object>()
                         .put("userId",u.getId())
+                        .put("userInfo",u)
+                        .put("studentInfo",s)
                         .put("isAdmin",isAdmin)
                         .build();
         return AaResponse.createBySuccess(data);
@@ -75,11 +77,22 @@ public class LoginService implements LoginServiceInterface {
         User res = userMapper.queryUserByUnPw(user);
         if(res!=null){
             boolean isAdmin = (res.getStudentId() == -1);
-            Map<String,Object> data =
-                    new ImmutableMap.Builder<String,Object>()
-                            .put("userId",user.getId())
-                            .put("isAdmin",isAdmin)
-                            .build();
+            Student s = studentMapper.queryStudentById(res.getStudentId());
+            Map<String,Object> data;
+            if(s!=null){
+                 data = new ImmutableMap.Builder<String,Object>()
+                    .put("userId",user.getId())
+                    .put("userInfo",res)
+                    .put("studentInfo",s)
+                    .put("isAdmin",isAdmin)
+                    .build();
+            }else {
+                data = new ImmutableMap.Builder<String,Object>()
+                    .put("userId",user.getId())
+                    .put("userInfo",res)
+                    .put("isAdmin",isAdmin)
+                    .build();
+            }
             return AaResponse.createBySuccess(data);
         }else {
             return AaResponse.createByErrorMessage("登录失败");

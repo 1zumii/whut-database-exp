@@ -3,8 +3,8 @@ export const getUserToken = () => {
     return userId?userId:null;
 };
 
-export const setUserToken = (userId) => {
-    wx.setStorageSync("user", userId);
+export const setUserToken = (user) => {
+    wx.setStorageSync("user", user);
 };
 
 export const clearUserToken = () => {

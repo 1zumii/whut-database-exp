@@ -13,7 +13,9 @@ import database.exp.aa.util.TimestampParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class CheckInService implements CheckInServiceInterface {

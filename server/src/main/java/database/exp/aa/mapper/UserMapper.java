@@ -22,4 +22,22 @@ public interface UserMapper {
         @Result(column = "avatar",property = "avatar")
     })
     User queryUserByUnPw(User user);
+
+    @Select(
+        "SELECT * FROM users" +
+        " WHERE id = #{userId}"
+    )
+    @Results({
+        @Result(column = "id",property = "id",id = true),
+        @Result(column = "studentId",property = "studentId"),
+        @Result(column = "avatar",property = "avatar")
+    })
+    User queryUserById(int userId);
+
+    @Update(
+        "UPDATE users " +
+        "SET username = #{newUsername}, password = #{newPassword} "+
+        "WHERE id = #{userId}"
+    )
+    int updateUserById(@Param("userId") int userId,@Param("newUsername") String newUsername,@Param("newPassword") String newPassword);
 }

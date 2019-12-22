@@ -31,7 +31,7 @@ Page({
 			wx.reLaunch({
 				url: "../login/login",
 			});
-		} else {
+		} else if (!user.isAdmin) {
 			//已登录
 			this.fetchCourseInfo();
 		}
@@ -39,14 +39,16 @@ Page({
 	//生命周期函数--监听页面显示
 	onShow: function (options) {
 		console.log("onShow", new Date().getTime());
-		if (getUserToken()) {
+		const user = getUserToken();
+		if (user && !user.isAdmin) {
 			this.fetchCourseInfo();
 		}
 	},
 	//页面相关事件处理函数--监听用户下拉动作
 	onPullDownRefresh: function () {
 		console.log("onPullDownRefresh", new Date().getTime());
-		if (getUserToken()) {
+		const user = getUserToken();
+		if (user && !user.isAdmin) {
 			this.fetchCourseInfo();
 		}
 	},
@@ -59,43 +61,43 @@ Page({
 			'/check-in/getCourseInfoByUser',
 			{ userId, studentId, nowTimestamp }
 		).then((json) => {
-			if(json.code === 0){
-				switch(json.data.isCheckin){
+			if (json.code === 0) {
+				switch (json.data.isCheckin) {
 					case checkStatus.notNeed:
 						//没课
 						this.setData({
-							courseInfo:json.data.courseInfo,
-							isCheckin:json.data.isCheckin,
+							courseInfo: json.data.courseInfo,
+							isCheckin: json.data.isCheckin,
 							courseNow: "没 课",
-							buttonDisable:true,
+							buttonDisable: true,
 							buttonText: "休 息"
 						});
 						break;
 					case checkStatus.notYet:
 						//有课，还没打卡
 						this.setData({
-							courseInfo:json.data.courseInfo,
-							isCheckin:json.data.isCheckin,
+							courseInfo: json.data.courseInfo,
+							isCheckin: json.data.isCheckin,
 							courseNow: json.data.courseInfo.courseName,
-							buttonDisable:false,
-							buttonText:"签 到"
+							buttonDisable: false,
+							buttonText: "签 到"
 						});
 						break;
 					case checkStatus.checked:
 						//有课，打卡了
 						this.setData({
-							courseInfo:json.data.courseInfo,
-							isCheckin:json.data.isCheckin,
+							courseInfo: json.data.courseInfo,
+							isCheckin: json.data.isCheckin,
 							courseNow: json.data.courseInfo.courseName,
-							buttonDisable:true,
-							buttonText:"已 签"
+							buttonDisable: true,
+							buttonText: "已 签"
 						});
 						break;
 				}
-			}else {
+			} else {
 				Notify({
-					type:"danger",
-					message:json.msg
+					type: "danger",
+					message: json.msg
 				});
 				throw json;
 			}
@@ -107,30 +109,30 @@ Page({
 	handleCheckButtonClick: function () {
 		const { userId } = getUserToken();
 		const parameters = {
-			courseId:this.data.courseInfo.id,
-			userId:userId,
-			nowTimestamp:new Date().getTime()
+			courseId: this.data.courseInfo.id,
+			userId: userId,
+			nowTimestamp: new Date().getTime()
 		};
-		this.setData({buttonLoading:true});
+		this.setData({ buttonLoading: true });
 		AaHostPost(
 			"/check-in/checkInByUser",
-			{...parameters}
-		).then((json)=>{
-			if(json.code === 0){
+			{ ...parameters }
+		).then((json) => {
+			if (json.code === 0) {
 				this.setData({
-					isCheckin:checkStatus.checked,
-					buttonDisable:true,
-					buttonText:"已 签",
-					buttonLoading:false
+					isCheckin: checkStatus.checked,
+					buttonDisable: true,
+					buttonText: "已 签",
+					buttonLoading: false
 				});
-			}else {
+			} else {
 				Notify({
-					type:"danger",
-					message:json.msg
+					type: "danger",
+					message: json.msg
 				});
 				throw json;
 			}
-		}).catch((error)=>{
+		}).catch((error) => {
 			console.error(error);
 		})
 	}

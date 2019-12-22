@@ -1,6 +1,7 @@
 /* pages/setting/setting.wxss */
 page {
     background-color: #f8f8f8;
+    margin-top: 50rpx;
 }
 .field-title {
     margin: 20rpx 0rpx;
@@ -8,4 +9,7 @@ page {
     color: rgba(69, 90, 100, 0.6);
     font-weight: normal;
     font-size: 16px;
+}
+.hidden{
+    display:none;
 }

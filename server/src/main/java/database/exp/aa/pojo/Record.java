@@ -2,11 +2,11 @@ package database.exp.aa.pojo;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 public class Record {
-    private Date date;
+    private Timestamp time;
     private int userId;
     private int courseId;
 }

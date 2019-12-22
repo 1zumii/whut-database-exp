@@ -2,10 +2,12 @@ package database.exp.aa.service.aaServiceImplememt;
 
 import com.alibaba.fastjson.JSONObject;
 import database.exp.aa.mapper.CourseMapper;
+import database.exp.aa.mapper.RecordMapper;
 import database.exp.aa.pojo.Course;
 import database.exp.aa.pojo.StudentCourseMap;
 import database.exp.aa.service.aaServiceInterface.CheckInServiceInterface;
 import database.exp.aa.util.AaResponse;
+import database.exp.aa.util.TimestampParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +17,15 @@ import java.util.*;
 public class CheckInService implements CheckInServiceInterface {
     @Autowired
     CourseMapper courseMapper;
+    @Autowired
+    RecordMapper recordMapper;
 
     @Override
     public AaResponse<Map<String, Object>> getCourseInfoByUser(JSONObject parameters) {
         //时间处理
-        Calendar now = Calendar.getInstance();
-        now.setTime(new Date((long)parameters.get("nowTimestamp")));
-        int dayIndex = now.get(Calendar.DAY_OF_WEEK);
-        int courseIndex = (now.get(Calendar.HOUR_OF_DAY)<12)?1:2;
+        TimestampParser tp = new TimestampParser((long)parameters.get("nowTimestamp"));
+        int dayIndex = tp.getDayIndex();
+        int courseIndex = tp.getCourseIndex();
 
         //找有没有课
         List<StudentCourseMap> courses = courseMapper.getAllCoursesByStudentId((int)parameters.get("studentId"));
@@ -39,6 +42,14 @@ public class CheckInService implements CheckInServiceInterface {
         }
         if(c!=null){
             //有课
+            System.out.println(c);
+            System.out.println(tp.getSqlTimestamp().getClass());
+            int res = recordMapper.createRecord(
+                tp.getSqlTimestamp(),
+                (int)parameters.get("userId"),
+                c.getId()
+            );
+            System.out.println(res);
         }else {
             //没课
         }

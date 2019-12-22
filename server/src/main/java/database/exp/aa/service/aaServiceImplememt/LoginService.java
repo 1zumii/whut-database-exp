@@ -27,74 +27,74 @@ public class LoginService implements LoginServiceInterface {
     StudentMapper studentMapper;
 
     @Override
-    public AaResponse<Map<String, Object>> createUser(User user,int studentId) {
+    public AaResponse<Map<String, Object>> createUser(User user, int studentId) {
         Integer res = userMapper.createUser(user);
-        Map<String,Object> data =
-            new ImmutableMap.Builder<String,Object>()
-                    .put("userId",res)
-                    .build();
+        Map<String, Object> data =
+                new ImmutableMap.Builder<String, Object>()
+                        .put("userId", res)
+                        .build();
         return AaResponse.createBySuccess(data);
     }
 
     @Override
     public AaResponse<Map<String, Object>> queryAllClasses() {
         List<ClassA> res = classMapper.queryAllClasses();
-        Map<String,Object> data =
-                new ImmutableMap.Builder<String,Object>()
-                        .put("classList",res)
-                        .build();
+        Map<String, Object> data =
+            new ImmutableMap.Builder<String, Object>()
+                .put("classList", res)
+                .build();
         return AaResponse.createBySuccess(data);
     }
 
     @Override
     public AaResponse<Map<String, Object>> createNewStudent(JSONObject parameters) {
         Student s = new Student();
-        s.setStuNum((String)parameters.get("stuNum"));
-        s.setName((String)parameters.get("name"));
-        s.setGender((int)parameters.get("gender"));
-        s.setPhone((String)parameters.get("phone"));
-        s.setClassId((int)parameters.get("classId"));
+        s.setStuNum((String) parameters.get("stuNum"));
+        s.setName((String) parameters.get("name"));
+        s.setGender((int) parameters.get("gender"));
+        s.setPhone((String) parameters.get("phone"));
+        s.setClassId((int) parameters.get("classId"));
         studentMapper.createStudent(s);
 
         User u = new User();
-        u.setUsername((String)parameters.get("username"));
-        u.setPassword((String)parameters.get("password"));
+        u.setUsername((String) parameters.get("username"));
+        u.setPassword((String) parameters.get("password"));
         u.setStudentId(s.getStudentId());
         userMapper.createUser(u);
         boolean isAdmin = (u.getStudentId() == -1);
-        Map<String,Object> data =
-                new ImmutableMap.Builder<String,Object>()
-                        .put("userId",u.getId())
-                        .put("userInfo",u)
-                        .put("studentInfo",s)
-                        .put("isAdmin",isAdmin)
-                        .build();
+        Map<String, Object> data =
+            new ImmutableMap.Builder<String, Object>()
+                .put("userId", u.getId())
+                .put("userInfo", u)
+                .put("studentInfo", s)
+                .put("isAdmin", isAdmin)
+                .build();
         return AaResponse.createBySuccess(data);
     }
 
     @Override
     public AaResponse<Map<String, Object>> loginByUser(User user) {
         User res = userMapper.queryUserByUnPw(user);
-        if(res!=null){
+        if (res != null) {
             boolean isAdmin = (res.getStudentId() == -1);
             Student s = studentMapper.queryStudentById(res.getStudentId());
-            Map<String,Object> data;
-            if(s!=null){
-                 data = new ImmutableMap.Builder<String,Object>()
-                    .put("userId",res.getId())
-                    .put("userInfo",res)
-                    .put("studentInfo",s)
-                    .put("isAdmin",isAdmin)
+            Map<String, Object> data;
+            if (s != null) {
+                data = new ImmutableMap.Builder<String, Object>()
+                    .put("userId", res.getId())
+                    .put("userInfo", res)
+                    .put("studentInfo", s)
+                    .put("isAdmin", isAdmin)
                     .build();
-            }else {
-                data = new ImmutableMap.Builder<String,Object>()
-                    .put("userId",user.getId())
-                    .put("userInfo",res)
-                    .put("isAdmin",isAdmin)
+            } else {
+                data = new ImmutableMap.Builder<String, Object>()
+                    .put("userId", user.getId())
+                    .put("userInfo", res)
+                    .put("isAdmin", isAdmin)
                     .build();
             }
             return AaResponse.createBySuccess(data);
-        }else {
+        } else {
             return AaResponse.createByErrorMessage("登录失败");
         }
     }

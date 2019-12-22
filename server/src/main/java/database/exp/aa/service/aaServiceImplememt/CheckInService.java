@@ -1,9 +1,11 @@
 package database.exp.aa.service.aaServiceImplememt;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.ImmutableMap;
 import database.exp.aa.mapper.CourseMapper;
 import database.exp.aa.mapper.RecordMapper;
 import database.exp.aa.pojo.Course;
+import database.exp.aa.pojo.Record;
 import database.exp.aa.pojo.StudentCourseMap;
 import database.exp.aa.service.aaServiceInterface.CheckInServiceInterface;
 import database.exp.aa.util.AaResponse;
@@ -40,19 +42,33 @@ public class CheckInService implements CheckInServiceInterface {
                 break;
             }
         }
+        Map<String,Object> data;
         if(c!=null){
             //有课
-            System.out.println(c);
-            System.out.println(tp.getSqlTimestamp().getClass());
-            int res = recordMapper.createRecord(
+            List<Record> res = recordMapper.queryRecordByAllParam(
                 tp.getSqlTimestamp(),
                 (int)parameters.get("userId"),
                 c.getId()
             );
-            System.out.println(res);
+            if(res.size() == 0){
+                //还没打卡
+                 data = new ImmutableMap.Builder<String,Object>()
+                    .put("isCheckin",1)
+                    .put("courseInfo",c)
+                    .build();
+            }else {
+                //打卡了
+                data = new ImmutableMap.Builder<String,Object>()
+                    .put("isCheckin",2)
+                    .put("courseInfo",c)
+                    .build();
+            }
         }else {
             //没课
+            data = new ImmutableMap.Builder<String,Object>()
+                .put("isCheckin",0)
+                .build();
         }
-        return null;
+        return AaResponse.createBySuccess(data);
     }
 }

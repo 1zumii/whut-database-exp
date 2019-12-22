@@ -83,32 +83,15 @@
 <van-popup
     show="{{courseListVisible}}"
     bind:click-overlay="flipCourseListPopupVisible"
-    custom-style="border-radius:5px;width:600rpx;max-height:700rpx"
+    custom-style="border-radius:5px;width:620rpx"
 >
     <view class="field-title">学生已选课程</view>
-    <van-cell-group>
-        <van-field
-            value="{{newUsername}}"
-            label="新用户名"
-            placeholder="请输入新用户名"
-            border="{{ true }}"
-            bind:change="handleUsernameChange"
-        />
-        <van-field
-            value="{{newPassword}}"
-            label="新密码"
-            placeholder="请输入新密码"
-            border="{{ true }}"
-            password="{{ true }}"
-            bind:change="handlePasswordChange"
-        />
-        <van-field
-            value="{{newCheckPassword}}"
-            label="确认密码"
-            placeholder="请确认密码"
-            border="{{ true }}"
-            password="{{ true }}"
-            bind:change="handlePasswordChange"
-        />
-    </van-cell-group>
+    <scroll-view scroll-y="true" style="max-height:700rpx;">
+        <block wx:for="{{courseList}}" wx:key="{{item.id}}">
+            <van-cell
+                title="{{item.courseName}}"
+                value="{{item.teacher}}"
+            />
+        </block>
+    </scroll-view>
 </van-popup>

@@ -26,6 +26,7 @@ Page({
 			isAdmin: user.isAdmin,
 			userInfo: user.userInfo
 		});
+		this.fetchStudentCourseList();
 	},
 	//生命周期函数--页面出现在前台时执行
 	onShow: function () {
@@ -34,6 +35,7 @@ Page({
 			isAdmin: user.isAdmin,
 			userInfo: user.userInfo
 		});
+		this.fetchStudentCourseList();
 	},
 	//点击注销
 	handleLogoutClick: function () {
@@ -53,6 +55,28 @@ Page({
 				});
 			},
 		});
+	},
+	//获取学生已经选的课
+	fetchStudentCourseList:function(){
+		const {studentId} = getUserToken().studentInfo
+		AaHostPost(
+			'/setting/query-studentCourses',
+			{studentId}
+		).then((json)=>{
+			if(json.code === 0){
+				this.setData({
+					courseList:json.data.courseList
+				})
+			}else {
+				Notify({
+					type:"warning",
+					message:"学生课表获取失败"
+				});
+				throw json;
+			}
+		}).catch((error)=>{
+			console.error(error);
+		})
 	},
 	//用户信息修改popup
 	flipUpdateUserInfoPopupVisible: function () {

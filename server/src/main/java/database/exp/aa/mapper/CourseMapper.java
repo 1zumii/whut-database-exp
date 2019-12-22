@@ -20,4 +20,6 @@ public interface CourseMapper {
 
     @Select("SELECT * FROM courses WHERE id = #{id}")
     Course getCourseById(int id);
+
+
 }

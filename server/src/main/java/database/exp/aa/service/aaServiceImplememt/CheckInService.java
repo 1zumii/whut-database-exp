@@ -71,4 +71,22 @@ public class CheckInService implements CheckInServiceInterface {
         }
         return AaResponse.createBySuccess(data);
     }
+
+    @Override
+    public AaResponse<Map<String, Object>> checkInByUser(JSONObject parameters) {
+        //时间处理
+        TimestampParser tp = new TimestampParser((long)parameters.get("nowTimestamp"));
+        int res = recordMapper.createRecord(
+            tp.getSqlTimestamp(),
+            (int)parameters.get("userId"),
+            (int)parameters.get("courseId")
+        );
+        if(res == 1){
+            //打卡成功
+            return AaResponse.createBySuccessMessage("打卡成功");
+        }else {
+            //打卡失败
+            return AaResponse.createByErrorMessage("打卡失败");
+        }
+    }
 }

@@ -1,11 +1,13 @@
 <!--pages/checkIn/checkIn.wxml-->
+<van-notify id="van-notify" />
 <view class="main">
+
     <view class="course-now">{{courseNow}}</view>
     <button
         class="check-button"
         loading="{{buttonLoading}}"
         disabled="{{buttonDisable}}"
-        bindtap="onTap"
+        bindtap="handleCheckButtonClick"
     >
         {{buttonText}}
     </button>

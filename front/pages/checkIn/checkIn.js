@@ -21,7 +21,7 @@ Page({
 		buttonDisable: false,
 		buttonLoading: false,
 		buttonText: "签 到",
-		courseNow: "数据库系统原理E",
+		courseNow: "休 息",
 	},
 	//生命周期函数--监听页面加载
 	onLoad: function (options) {
@@ -55,7 +55,6 @@ Page({
 		const nowTimestamp = new Date().getTime();
 		const { userId, studentInfo } = getUserToken();
 		const { studentId } = studentInfo;
-		this.setData({buttonLoading:true});
 		AaHostPost(
 			'/check-in/getCourseInfoByUser',
 			{ userId, studentId, nowTimestamp }
@@ -67,7 +66,6 @@ Page({
 						this.setData({
 							courseInfo:json.data.courseInfo,
 							isCheckin:json.data.isCheckin,
-							buttonLoading:false,
 							courseNow: "没 课",
 							buttonDisable:true,
 							buttonText: "休 息"
@@ -78,7 +76,6 @@ Page({
 						this.setData({
 							courseInfo:json.data.courseInfo,
 							isCheckin:json.data.isCheckin,
-							buttonLoading:false,
 							courseNow: json.data.courseInfo.courseName,
 							buttonDisable:false,
 							buttonText:"签 到"
@@ -89,9 +86,8 @@ Page({
 						this.setData({
 							courseInfo:json.data.courseInfo,
 							isCheckin:json.data.isCheckin,
-							buttonLoading:false,
 							courseNow: json.data.courseInfo.courseName,
-							buttonDisable:false,
+							buttonDisable:true,
 							buttonText:"已 签"
 						});
 						break;
@@ -107,8 +103,35 @@ Page({
 			console.error(error);
 		})
 	},
-	//按钮点击
+	//按钮点击，打卡签到
 	handleCheckButtonClick: function () {
-
+		const { userId } = getUserToken();
+		const parameters = {
+			courseId:this.data.courseInfo.id,
+			userId:userId,
+			nowTimestamp:new Date().getTime()
+		};
+		this.setData({buttonLoading:true});
+		AaHostPost(
+			"/check-in/checkInByUser",
+			{...parameters}
+		).then((json)=>{
+			if(json.code === 0){
+				this.setData({
+					isCheckin:checkStatus.checked,
+					buttonDisable:true,
+					buttonText:"已 签",
+					buttonLoading:false
+				});
+			}else {
+				Notify({
+					type:"danger",
+					message:json.msg
+				});
+				throw json;
+			}
+		}).catch((error)=>{
+			console.error(error);
+		})
 	}
 })

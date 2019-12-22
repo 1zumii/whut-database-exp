@@ -21,4 +21,9 @@ public class CheckInController {
     public AaResponse<Map<String, Object>> getCourseInfoByUser(@RequestBody JSONObject parameters){
         return checkInService.getCourseInfoByUser(parameters);
     }
+
+    @PostMapping("/checkInByUser")
+    public AaResponse<Map<String,Object>> checkInByUser(@RequestBody JSONObject parameters){
+        return checkInService.checkInByUser(parameters);
+    }
 }

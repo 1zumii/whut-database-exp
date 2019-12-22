@@ -1,1 +1,11 @@
 /* pages/setting/setting.wxss */
+page {
+    background-color: #f8f8f8;
+}
+.field-title {
+    margin: 20rpx 0rpx;
+    padding: 0rpx 30rpx;
+    color: rgba(69, 90, 100, 0.6);
+    font-weight: normal;
+    font-size: 16px;
+}

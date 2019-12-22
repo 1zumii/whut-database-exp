@@ -1,2 +1,38 @@
 <!--pages/setting/setting.wxml-->
-<text>pages/setting/setting.wxml</text>
+<van-notify id="van-notify" />
+<view class="field-title">用户设置</view>
+<van-cell-group>
+    <van-cell
+        title="账户信息"
+        icon="user-o"
+        value="修改"
+        is-link="{{true}}"
+        bind:tap="flipUpdateUserInfoPopupVisible"
+    />
+    <van-cell
+        title="注销"
+        icon="close"
+        is-link="{{true}}"
+        bind:tap="handleLogoutClick"
+    />
+</van-cell-group>
+<van-popup
+    show="{{updateUserInfoVisible}}"
+    round="{{true}}"
+    bind:click-overlay="flipUpdateUserInfoPopupVisible"
+>
+    
+</van-popup>
+<view class="field-title">管理设置</view>
+<van-cell-group>
+    <van-cell
+        title="课程管理"
+        icon="calender-o"
+        is-link="{{true}}"
+    />
+    <van-cell
+        title="添加课程"
+        icon="add-o"
+        is-link="{{true}}"
+    />
+</van-cell-group>

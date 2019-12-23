@@ -7,6 +7,7 @@
     "pages/signin/signin",
     "pages/index/index",
     "pages/addcourse/addcourse",
+    "pages/course-modify/course-modify",
     "pages/course-manage/course-manage"
   ],
   "window": {

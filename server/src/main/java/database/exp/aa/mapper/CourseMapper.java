@@ -18,6 +18,17 @@ public interface CourseMapper {
     })
     List<StudentCourseMap> getAllCoursesByStudentId(int id);
 
+    @Select("SELECT * FROM stu_crs_map WHERE courseId = #{id}")
+    @Results({
+        @Result(column = "studentId",property = "student",one=@One(
+            select = "database.exp.aa.mapper.StudentMapper.queryStudentById"
+        )),
+        @Result(column = "courseId",property = "course",one = @One(
+            select = "database.exp.aa.mapper.CourseMapper.getCourseById"
+        ))
+    })
+    List<StudentCourseMap> getAllStudentsByCourseId(int id);
+
     @Select("SELECT * FROM courses WHERE id = #{id}")
     Course getCourseById(int id);
 

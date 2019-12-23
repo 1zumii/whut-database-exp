@@ -1,0 +1,62 @@
+<!--pages/course-modify/course-modify.wxml-->
+<van-notify id="van-notify" />
+<view class="field-title">{{titleText}}</view>
+<van-field
+    value="{{courseName}}"
+    label="课程名称"
+    left-icon="coupon-o"
+    placeholder="请输入课程名称"
+    border="{{true}}"
+    bind:change="handleCourseNameChange"
+/>
+<van-field
+    value="{{teacher}}"
+    label="任课老师"
+    left-icon="manager-o"
+    placeholder="请输入任课老师"
+    border="{{true}}"
+    bind:change="handleTeacherChange"
+/>
+<van-collapse 
+    value="{{ activeNames }}" 
+    bind:change="onCollapseChange"
+>
+    <van-collapse-item
+        title="学生管理"
+        name="student-manage"
+        icon="cluster-o"
+    >
+        <van-checkbox-group
+            value="{{ selected }}"
+            bind:change="onCheckBoxGroupChange"
+            wx:for="{{all}}"
+            wx:key="{{item.studentId}}"
+        >
+            <van-checkbox name="{{item.studentId}}">{{item.name}}</van-checkbox>
+        </van-checkbox-group>
+    </van-collapse-item>
+</van-collapse>
+<van-dropdown-menu active-color="#1296db">
+    <van-dropdown-item
+        value="{{ dayIndex }}"
+        options="{{ dayIndexMap }}"
+        bind:change="handleDayIndexSelectChange"
+    />
+    <van-dropdown-item
+        value="{{ courseIndex }}"
+        options="{{ courseIndexMap }}"
+        bind:change="hanleCourseIndexSelectChange"
+    />
+</van-dropdown-menu>
+<view class="bottom-row">
+    <button
+        class="submit-button"
+        type="info"
+        bindtap="onSubmit"
+    >修改</button>
+    <button
+        class="delete-button"
+        type="info"
+        bindtap="onSubmit"
+    >删除</button>
+</view>

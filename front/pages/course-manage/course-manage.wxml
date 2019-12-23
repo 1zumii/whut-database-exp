@@ -5,5 +5,7 @@
         title="{{item.courseName}}"
         value="{{item.teacher}}"
         is-link="{{true}}"
+        data-id="{{item.id}}"
+        bind:tap="navigateToCourseModify"
     />
 </block>

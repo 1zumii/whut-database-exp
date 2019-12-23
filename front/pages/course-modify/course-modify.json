@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "van-field": "../../dist/vant-weapp/field/index",
+    "van-cell": "../../dist/vant-weapp/cell/index",
+    "van-cell-group": "../../dist/vant-weapp/cell-group/index",
+    "van-notify": "../../dist/vant-weapp/notify/index",
+    "van-collapse": "../../dist/vant-weapp/collapse/index",
+    "van-collapse-item": "../../dist/vant-weapp/collapse-item/index",
+    "van-dropdown-menu": "../../dist/vant-weapp/dropdown-menu/index",
+    "van-dropdown-item": "../../dist/vant-weapp/dropdown-item/index",
+    "van-checkbox": "../../dist/vant-weapp/checkbox/index",
+    "van-checkbox-group": "../../dist/vant-weapp/checkbox-group/index"
+  },
+  "navigationBarTitleText":"课程编辑"
+}

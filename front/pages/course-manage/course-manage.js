@@ -34,5 +34,17 @@ Page({
 		}).catch((e)=>{
 			console.error(e)
 		})
+	},
+	navigateToCourseModify:function(e){
+		const {id} = e.currentTarget.dataset;
+		wx.navigateTo({
+			url: `../course-modify/course-modify?id=${id}`,
+			fail: ()=>{
+				Notify({
+					type:"warning",
+					message:"课程详情页跳转失败"
+				});
+			},
+		});
 	}
 })

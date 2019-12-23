@@ -1,9 +1,11 @@
 package database.exp.aa.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import database.exp.aa.service.aaServiceImplememt.CourseManageService;
 import database.exp.aa.util.AaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +20,10 @@ public class CourseController {
     @PostMapping("/queryAllCourses")
     public AaResponse<Map<String,Object>> queryAllCourses(){
         return courseManageService.queryAllCourses();
+    }
+
+    @PostMapping("/query-courseAllInfo")
+    public AaResponse<Map<String,Object>> queryCourseAllInfo(@RequestBody JSONObject parameters){
+        return courseManageService.queryCourseAllInfo(parameters);
     }
 }

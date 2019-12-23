@@ -30,4 +30,10 @@ public interface CourseMapper {
         @Param("dayIndex") int dayIndex,@Param("courseIndex") int courseIndex
     );
 
+    @Select("SELECT * FROM courses")
+    @Results({
+        @Result(id = true,column = "id",property = "id"),
+    })
+    List<Course> getAllCourses();
+
 }

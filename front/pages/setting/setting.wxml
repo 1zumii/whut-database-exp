@@ -12,12 +12,13 @@
         title="课程管理"
         icon="calender-o"
         is-link="{{true}}"
+        bind:tap="navigateToCourseManage"
     />
     <van-cell
         title="添加课程"
         icon="add-o"
         is-link="{{true}}"
-        bind:tap="handleAddCourse"
+        bind:tap="navigateToAddCourse"
     />
 </van-cell-group>
 

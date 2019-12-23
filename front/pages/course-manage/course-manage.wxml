@@ -1,2 +1,9 @@
 <!--pages/course-manage/course-manage.wxml-->
-<text>pages/course-manage/course-manage.wxml</text>
+<van-notify id="van-notify"/>
+<block wx:for="{{courseList}}" wx:key="{{item.id}}">
+    <van-cell
+        title="{{item.courseName}}"
+        value="{{item.teacher}}"
+        is-link="{{true}}"
+    />
+</block>

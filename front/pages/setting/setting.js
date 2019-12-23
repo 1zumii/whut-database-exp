@@ -162,7 +162,7 @@ Page({
 		});
 	},
 	//跳转至添加课表页
-	handleAddCourse:function(){
+	navigateToAddCourse:function(){
 		wx.navigateTo({
 			url: '../addcourse/addcourse',
 			fail: ()=>{
@@ -173,4 +173,16 @@ Page({
 			}
 		});
 	},
+	//跳转至课程管理页
+	navigateToCourseManage:function(){
+		wx.navigateTo({
+			url: '../course-manage/course-manage',
+			fail: ()=>{
+				Notify({
+					type:"danger",
+					message:"课程管理页面跳转失败"
+				})
+			}
+		});
+	}
 })

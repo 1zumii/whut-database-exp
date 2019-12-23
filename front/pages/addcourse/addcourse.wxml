@@ -1,0 +1,37 @@
+<!--pages/addcourse/addcourse.wxml-->
+<van-notify id="van-notify" />
+<view class="field-title">添加课程</view>
+<van-field
+    value="{{newCourseName}}"
+    label="课程名称"
+    placeholder="请输入课程名称"
+    border="{{true}}"
+    bind:change="handleCourseNameChange"
+/>
+<van-field
+    value="{{newTeacher}}"
+    label="任课老师"
+    placeholder="请输入任课老师"
+    border="{{true}}"
+    bind:change="handleTeacherChange"
+/>
+<view class="field-title">上课时间</view>
+<van-dropdown-menu active-color="#1296db">
+    <van-dropdown-item
+        value="{{ dayIndex }}"
+        options="{{ dayIndexMap }}"
+        bind:change="handleDayIndexSelectChange"
+    />
+    <van-dropdown-item
+        value="{{ courseIndex }}"
+        options="{{ courseIndexMap }}"
+        bind:change="hanleCourseIndexSelectChange"
+    />
+</van-dropdown-menu>
+<view class="bottom-row">
+    <button
+        class="submit-button"
+        type="info"
+        bindtap="onSubmit"
+    >添 加</button>
+</view>

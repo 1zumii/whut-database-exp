@@ -62,4 +62,21 @@ public class SettingService implements SettingServiceInterface {
 
         return AaResponse.createBySuccess(data);
     }
+
+    @Override
+    public AaResponse<Map<String, Object>> addCourse(JSONObject parameters) {
+        int res = courseMapper.insertCourse(
+            (String)parameters.get("courseName"),
+            (String)parameters.get("teacher"),
+            (int)parameters.get("dayIndex"),
+            (int)parameters.get("courseIndex")
+        );
+        if(res == 1){
+            //插入成功
+            return AaResponse.createBySuccessMessage("添加成功");
+        }else {
+            //插入失败
+            return AaResponse.createByErrorMessage("添加失败");
+        }
+    }
 }

@@ -21,5 +21,13 @@ public interface CourseMapper {
     @Select("SELECT * FROM courses WHERE id = #{id}")
     Course getCourseById(int id);
 
+    @Insert(
+        "INSERT INTO courses(courseName,teacher,dayIndex,courseIndex) "+
+        "VALUES (#{courseName}, #{teacher}, #{dayIndex}, #{courseIndex})"
+    )
+    int insertCourse(
+        @Param("courseName") String courseName,@Param("teacher") String teacher,
+        @Param("dayIndex") int dayIndex,@Param("courseIndex") int courseIndex
+    );
 
 }

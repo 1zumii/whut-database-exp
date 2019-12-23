@@ -17,6 +17,7 @@
         title="添加课程"
         icon="add-o"
         is-link="{{true}}"
+        bind:tap="handleAddCourse"
     />
 </van-cell-group>
 

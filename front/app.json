@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/checkIn/checkIn",
-    "pages/index/index",
     "pages/statistics/statistics",
     "pages/setting/setting",
     "pages/login/login",
-    "pages/signin/signin"
+    "pages/signin/signin",
+    "pages/index/index",
+    "pages/addcourse/addcourse"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -160,5 +160,17 @@ Page({
 		this.setData({
 			courseListVisible: !courseListVisible
 		});
-	}
+	},
+	//跳转至添加课表页
+	handleAddCourse:function(){
+		wx.navigateTo({
+			url: '../addcourse/addcourse',
+			fail: ()=>{
+				Notify({
+					type:"danger",
+					message:"添加课程页面跳转失败"
+				})
+			}
+		});
+	},
 })

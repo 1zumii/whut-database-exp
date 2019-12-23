@@ -26,4 +26,9 @@ public class SettingController {
     public AaResponse<Map<String,Object>> queryCoursesByStudentId(@RequestBody JSONObject parameters){
         return settingService.queryCoursesByStudentId(parameters);
     }
+
+    @PostMapping("/add-course")
+    public AaResponse<Map<String,Object>> addCourse(@RequestBody JSONObject parameters){
+        return settingService.addCourse(parameters);
+    }
 }

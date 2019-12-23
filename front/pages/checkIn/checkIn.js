@@ -1,6 +1,6 @@
 // pages/checkIn/checkIn.js
 import { getUserToken } from '../../utils/userTokenManager'
-import Notify from '../../dist/vant-weapp/notify/notify';
+import Notify from '../../dist/vant-weapp/notify/notify'
 import { AaHostPost } from '../../utils/httpManager'
 
 const checkStatus = {

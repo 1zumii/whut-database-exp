@@ -14,10 +14,12 @@ Page({
 		newPassword: getUserToken().userInfo.password,
 		newCheckPassword: '',
 		//display
+		user: getUserToken(),
 		userInfo: getUserToken().userInfo,
 		updateUserInfoVisible: false,
 		courseListVisible: false,
 		courseList: null,
+		studentInfoVisible: false,
 	},
 	//生命周期函数--监听页面加载
 	onLoad: function (options) {
@@ -57,24 +59,24 @@ Page({
 		});
 	},
 	//获取学生已经选的课
-	fetchStudentCourseList:function(){
-		const {studentId} = getUserToken().studentInfo
+	fetchStudentCourseList: function () {
+		const { studentId } = getUserToken().studentInfo
 		AaHostPost(
 			'/setting/query-studentCourses',
-			{studentId}
-		).then((json)=>{
-			if(json.code === 0){
+			{ studentId }
+		).then((json) => {
+			if (json.code === 0) {
 				this.setData({
-					courseList:json.data.courseList
+					courseList: json.data.courseList
 				})
-			}else {
+			} else {
 				Notify({
-					type:"warning",
-					message:"学生课表获取失败"
+					type: "warning",
+					message: "学生课表获取失败"
 				});
 				throw json;
 			}
-		}).catch((error)=>{
+		}).catch((error) => {
 			console.error(error);
 		})
 	},
@@ -108,14 +110,14 @@ Page({
 					user.userInfo = json.data.user;
 					setUserToken(user);
 					Notify({
-						type:'success',
-						message:'用户信息修改成功'
+						type: 'success',
+						message: '用户信息修改成功'
 					});
 					this.flipUpdateUserInfoPopupVisible();
-				}else {
+				} else {
 					Notify({
-						type:'warning',
-						message:'用户信息修改失败'
+						type: 'warning',
+						message: '用户信息修改失败'
 					});
 					throw json;
 				}
@@ -162,27 +164,34 @@ Page({
 		});
 	},
 	//跳转至添加课表页
-	navigateToAddCourse:function(){
+	navigateToAddCourse: function () {
 		wx.navigateTo({
 			url: '../addcourse/addcourse',
-			fail: ()=>{
+			fail: () => {
 				Notify({
-					type:"danger",
-					message:"添加课程页面跳转失败"
+					type: "danger",
+					message: "添加课程页面跳转失败"
 				})
 			}
 		});
 	},
 	//跳转至课程管理页
-	navigateToCourseManage:function(){
+	navigateToCourseManage: function () {
 		wx.navigateTo({
 			url: '../course-manage/course-manage',
-			fail: ()=>{
+			fail: () => {
 				Notify({
-					type:"danger",
-					message:"课程管理页面跳转失败"
+					type: "danger",
+					message: "课程管理页面跳转失败"
 				})
 			}
 		});
+	},
+	//学生信息
+	flipStudentInfoPopupVisible: function () {
+		const { studentInfoVisible } = this.data;
+		if (!this.data.isAdmin) {
+			this.setData({ studentInfoVisible: !studentInfoVisible })
+		}
 	}
 })

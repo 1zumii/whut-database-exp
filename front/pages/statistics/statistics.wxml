@@ -2,6 +2,7 @@
 <van-notify id="van-notify" />
 
 <view
+    class="{{isAdmin?'hidden':'not-hidden'}}"
     wx:for="{{records}}"
     wx:key="{{item.time}}"
 >

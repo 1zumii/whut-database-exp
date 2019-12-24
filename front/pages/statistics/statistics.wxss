@@ -1,1 +1,4 @@
 /* pages/statistics/statistics.wxss */
+.hidden{
+    display:none;
+}

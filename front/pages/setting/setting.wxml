@@ -4,6 +4,8 @@
     title="当前登录"
     value="{{userInfo.username}}"
     icon="info-o"
+    is-link="{{true}}"
+    bind:tap="flipStudentInfoPopupVisible"
 />
 
 <view class="{{isAdmin?'field-title':'hidden'}}">管理设置</view>
@@ -96,4 +98,34 @@
             />
         </block>
     </scroll-view>
+</van-popup>
+
+<van-popup
+    show="{{studentInfoVisible}}"
+    bind:click-overlay="flipStudentInfoPopupVisible"
+    custom-style="border-radius:5px;width:620rpx"
+>
+    <view class="field-title">学生信息</view>
+    <van-cell-group>
+        <van-cell
+            icon="coupon-o"
+            title="学号"
+            value="{{user.studentInfo.stuNum}}"
+        />
+        <van-cell
+            icon="smile-o"
+            title="姓名"
+            value="{{user.studentInfo.name}}"
+        />
+        <van-cell
+            icon="like-o"
+            title="性别"
+            value="{{user.studentInfo.gender?'男':'女'}}"
+        />
+        <van-cell
+            icon="phone-o"
+            title="联系方式"
+            value="{{user.studentInfo.phone}}"
+        />
+    </van-cell-group>
 </van-popup>

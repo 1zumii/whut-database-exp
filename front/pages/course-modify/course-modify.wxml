@@ -61,6 +61,6 @@
     <button
         class="delete-button"
         type="info"
-        bindtap="onSubonDeleteCoursemit"
+        bindtap="onDeleteCourse"
     >删除</button>
 </view>

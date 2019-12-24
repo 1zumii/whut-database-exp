@@ -148,6 +148,22 @@ Page({
 	},
 	//删除课程
 	onDeleteCourse: function () {
-
+		const { courseId } = this.data;
+		AaHostPost(
+			'/course-manage/delete-course',
+			{ courseId }
+		).then((json) => {
+			if (json.code === 0) {
+				wx.navigateBack({ delta: 1 });
+			} else {
+				Notify({
+					type: 'warning',
+					message: '课程信息修改失败'
+				});
+				throw json;
+			}
+		}).catch((e) => {
+			console.error(e)
+		})
 	},
 })

@@ -64,7 +64,11 @@ public class CourseManageService implements CourseManageServiceInterface {
 
     @Override
     public AaResponse<Map<String, Object>> deleteCourse(JSONObject parameters) {
-        return null;
+        int courseId = (int)parameters.get("courseId");
+        courseMapper.deleteCourseById(courseId);
+        courseMapper.deleteRecordByCourseId(courseId);
+        courseMapper.deleteMapByCourseId(courseId);
+        return AaResponse.createBySuccessMessage("课程删除成功");
     }
 
     @Override

@@ -3,7 +3,7 @@
 
 <view
     class="{{isAdmin?'hidden':'not-hidden'}}"
-    wx:for="{{records}}"
+    wx:for="{{recordsCourse}}"
     wx:key="{{item.time}}"
 >
     <van-cell
@@ -11,4 +11,25 @@
         value="{{item.course.teacher}}"
         label="{{item.time}}"
     />
+</view>
+
+<view
+    class="{{isAdmin?'not-hidden':'hidden'}}"
+>
+    <van-dropdown-menu>
+        <van-dropdown-item
+            value="{{ courseId }}"
+            options="{{ courseList }}"
+            bind:change="handleCourseIdChange"
+        />
+    </van-dropdown-menu>
+    <view
+        wx:for="{{recordsStudent}}"
+        wx:key="{{item.time}}"
+    >
+        <van-cell
+            title="{{item.student.name}}"
+            label="{{item.time}}"
+        />
+    </view>
 </view>

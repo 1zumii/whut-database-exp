@@ -5,7 +5,7 @@ import lombok.Data;
 import java.sql.Timestamp;
 
 @Data
-public class RecordEx {
+public class RecordExStudent {
     private Timestamp time;
-    private Course course;
+    private Student student;
 }

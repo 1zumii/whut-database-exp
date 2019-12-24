@@ -1,2 +1,13 @@
 <!--pages/statistics/statistics.wxml-->
-<text>pages/statistics/statistics.wxml</text>
+<van-notify id="van-notify" />
+
+<view
+    wx:for="{{records}}"
+    wx:key="{{item.time}}"
+>
+    <van-cell
+        title="{{item.course.courseName}}"
+        value="{{item.course.teacher}}"
+        label="{{item.time}}"
+    />
+</view>

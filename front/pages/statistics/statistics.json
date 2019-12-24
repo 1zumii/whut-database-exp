@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-cell": "../../dist/vant-weapp/cell/index",
+    "van-notify": "../../dist/vant-weapp/notify/index",
+    "van-cell-group": "../../dist/vant-weapp/cell-group/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "navigationBarTitleText": "考勤记录"
 }

@@ -95,7 +95,6 @@ Page({
 	},
 	//学生列表
 	onCheckBoxGroupChange: function (event) {
-		console.log(event.detail);
 		this.setData({ selected: event.detail });
 	},
 	//提交修改

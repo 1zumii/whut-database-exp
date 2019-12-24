@@ -18,6 +18,7 @@ public interface CourseMapper {
     })
     List<StudentCourseMap> getAllCoursesByStudentId(int id);
 
+
     @Select("SELECT * FROM stu_crs_map WHERE courseId = #{id}")
     @Results({
         @Result(column = "studentId",property = "student",one=@One(
@@ -29,8 +30,10 @@ public interface CourseMapper {
     })
     List<StudentCourseMap> getAllStudentsByCourseId(int id);
 
+
     @Select("SELECT * FROM courses WHERE id = #{id}")
     Course getCourseById(int id);
+
 
     @Insert(
         "INSERT INTO courses(courseName,teacher,dayIndex,courseIndex) "+
@@ -41,10 +44,35 @@ public interface CourseMapper {
         @Param("dayIndex") int dayIndex,@Param("courseIndex") int courseIndex
     );
 
+
     @Select("SELECT * FROM courses")
     @Results({
         @Result(id = true,column = "id",property = "id"),
     })
     List<Course> getAllCourses();
 
+
+    @Delete("DELETE FROM courses WHERE id = #{id}")
+    int deleteCourseById(int id);
+
+
+    @Delete("DELETE FROM records WHERE courseId = #{courseId}")
+    int deleteRecordByCourseId(int courseId);
+
+
+    @Delete("DELETE FROM stu_crs_map WHERE courseId = #{courseId}")
+    int deleteMapByCourseId(int courseId);
+
+    @Update(
+        "UPDATE courses "+
+        "SET courseName = #{courseName}, teacher = #{teacher}, dayIndex = #{dayIndex}, courseIndex = #{courseIndex} "+
+        "WHERE id = #{courseId}"
+    )
+    int updateCourseInfo(
+        @Param("courseId") int courseId, @Param("courseName") String courseName,
+        @Param("teacher") String teacher, @Param("dayIndex") int dayIndex, @Param("courseIndex") int courseIndex
+     );
+
+    @Insert("INSERT INTO stu_crs_map(studentId,courseId) VALUES (#{studentId},#{courseId})")
+    int insertStudentCourseMap(@Param("studentId") int studentId,@Param("courseId") int courseId);
 }

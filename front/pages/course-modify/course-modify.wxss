@@ -33,3 +33,6 @@ page {
     border: 1px solid #FF6347;
     color: #FF6347;
 }
+.checkbox-item {
+    margin: 7px 20px;
+}

@@ -26,4 +26,14 @@ public class CourseController {
     public AaResponse<Map<String,Object>> queryCourseAllInfo(@RequestBody JSONObject parameters){
         return courseManageService.queryCourseAllInfo(parameters);
     }
+
+    @PostMapping("/update-course")
+    public AaResponse<Map<String,Object>> updateCourse(@RequestBody JSONObject parameters){
+        return courseManageService.updateCourse(parameters);
+    }
+
+    @PostMapping("/delete-course")
+    public AaResponse<Map<String,Object>> deleteCourseById(@RequestBody JSONObject parameters){
+        return courseManageService.deleteCourse(parameters);
+    }
 }

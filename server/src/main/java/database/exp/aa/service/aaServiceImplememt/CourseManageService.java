@@ -61,4 +61,32 @@ public class CourseManageService implements CourseManageServiceInterface {
             return AaResponse.createByErrorMessage("未找到此课程");
         }
     }
+
+    @Override
+    public AaResponse<Map<String, Object>> deleteCourse(JSONObject parameters) {
+        return null;
+    }
+
+    @Override
+    public AaResponse<Map<String, Object>> updateCourse(JSONObject parameters) {
+        int updateResult = courseMapper.updateCourseInfo(
+            (int)parameters.get("courseId"),
+            (String)parameters.get("courseName"),
+            (String)parameters.get("teacher"),
+            (int)parameters.get("dayIndex"),
+            (int)parameters.get("courseIndex")
+        );
+        if(updateResult!=1){
+            return AaResponse.createByErrorMessage("courses表更新异常");
+        }
+        //删除原来所有的map，再添加新的
+        int deleteMapRes = courseMapper.deleteMapByCourseId((int)parameters.get("courseId"));
+        Iterator it = ((ArrayList)parameters.get("selected")).iterator();
+        while (it.hasNext()){
+            courseMapper.insertStudentCourseMap(
+                (int)it.next(),(int)parameters.get("courseId")
+            );
+        }
+        return AaResponse.createBySuccessMessage("课程修改成功");
+    }
 }

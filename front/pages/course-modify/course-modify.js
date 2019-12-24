@@ -9,6 +9,7 @@ Page({
 	 */
 	data: {
 		//state
+		courseId: -1,
 		courseName: '',
 		teacher: '',
 		dayIndex: 2,
@@ -29,7 +30,7 @@ Page({
 			{ value: 1, text: '第一节' },
 			{ value: 2, text: '第二节' },
 		],
-		activeNames: [],
+		activeNames: [],	//collapse
 		all: [],
 	},
 	/**
@@ -53,13 +54,14 @@ Page({
 			if (json.code === 0) {
 				const { courseInfo, all, selected } = json.data;
 				this.setData({
+					courseId: courseInfo.id,
 					titleText: courseInfo.courseName,
 					courseName: courseInfo.courseName,
 					teacher: courseInfo.teacher,
 					dayIndex: courseInfo.dayIndex,
 					courseIndex: courseInfo.courseIndex,
-					selected:selected.map(e => String(e.studentId)),
-					all:all,
+					selected: selected.map(e => String(e.studentId)),
+					all: all,
 				})
 			} else {
 				Notify({
@@ -92,8 +94,60 @@ Page({
 		this.setData({ activeNames: event.detail });
 	},
 	//学生列表
-	onCheckBoxGroupChange:function(event) {
+	onCheckBoxGroupChange: function (event) {
 		console.log(event.detail);
-		this.setData({selected: event.detail});
-	}
+		this.setData({ selected: event.detail });
+	},
+	//提交修改
+	onSubmitCourseModify: function () {
+		if (this.validateForm()) {
+			AaHostPost(
+				'/course-manage/update-course',
+				{
+					courseId: this.data.courseId,
+					courseName: this.data.courseName,
+					teacher: this.data.teacher,
+					dayIndex: this.data.dayIndex,
+					courseIndex: this.data.courseIndex,
+					selected: this.data.selected.map(
+						e => (Number)(e)
+					),
+				}
+			).then((json) => {
+				if (json.code === 0) {
+					wx.navigateBack({ delta: 1 });
+				} else {
+					Notify({
+						type: 'warning',
+						message: '课程信息修改失败'
+					});
+					throw json;
+				}
+			}).catch((e) => {
+				console.error(e)
+			})
+		}
+	},
+	validateForm: function () {
+		const { courseName, teacher } = this.data;
+		if (!courseName) {
+			Notify({
+				type: "warning",
+				message: "课程名称不能为空"
+			});
+			return false;
+		}
+		if (!teacher) {
+			Notify({
+				type: "warning",
+				message: "任课老师不能为空"
+			});
+			return false;
+		}
+		return true;
+	},
+	//删除课程
+	onDeleteCourse: function () {
+
+	},
 })

@@ -9,4 +9,8 @@ public interface CourseManageServiceInterface {
     AaResponse<Map<String,Object>> queryAllCourses();
 
     AaResponse<Map<String,Object>> queryCourseAllInfo(JSONObject parameters);
+
+    AaResponse<Map<String,Object>> deleteCourse(JSONObject parameters);
+
+    AaResponse<Map<String,Object>> updateCourse(JSONObject parameters);
 }

@@ -32,7 +32,11 @@
             wx:for="{{all}}"
             wx:key="{{item.studentId}}"
         >
-            <van-checkbox name="{{item.studentId}}">{{item.name}}</van-checkbox>
+            <van-checkbox
+                name="{{item.studentId}}"
+                checked-color="#1296db"
+                custom-class="checkbox-item"
+            >{{item.name}}</van-checkbox>
         </van-checkbox-group>
     </van-collapse-item>
 </van-collapse>
@@ -52,11 +56,11 @@
     <button
         class="submit-button"
         type="info"
-        bindtap="onSubmit"
+        bindtap="onSubmitCourseModify"
     >修改</button>
     <button
         class="delete-button"
         type="info"
-        bindtap="onSubmit"
+        bindtap="onSubonDeleteCoursemit"
     >删除</button>
 </view>

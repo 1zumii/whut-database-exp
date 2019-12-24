@@ -1,7 +1,8 @@
 package database.exp.aa.mapper;
 
 import database.exp.aa.pojo.Record;
-import database.exp.aa.pojo.RecordEx;
+import database.exp.aa.pojo.RecordExCourse;
+import database.exp.aa.pojo.RecordExStudent;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.Timestamp;
@@ -13,6 +14,7 @@ public interface RecordMapper {
         "VALUES (#{ts},#{userId},#{courseId})"
     )
     int createRecord(@Param("ts") Timestamp ts, @Param("userId") int userId,@Param("courseId") int courseId);
+
 
     @Select(
         "SELECT * FROM records "+
@@ -26,6 +28,7 @@ public interface RecordMapper {
     })
     List<Record> queryRecordByAllParam(@Param("ts") Timestamp ts, @Param("userId") int userId, @Param("courseId") int courseId);
 
+
     @Select("SELECT * FROM records WHERE userId = #{userId} ORDER BY time DESC")
     @Results({
         @Result(column = "time",property = "time"),
@@ -33,5 +36,19 @@ public interface RecordMapper {
             select = "database.exp.aa.mapper.CourseMapper.getCourseById"
         ))
     })
-    List<RecordEx> queryRecordsByUserId(@Param("userId") int userId);
+    List<RecordExCourse> queryRecordsByUserId(@Param("userId") int userId);
+
+
+    @Select(
+        "SELECT * FROM records INNER JOIN users " +
+        "ON records.userId = users.id " +
+        "WHERE courseId = #{courseId} ORDER BY time DESC"
+    )
+    @Results({
+        @Result(column = "time",property = "time"),
+        @Result(column = "studentId",property = "student" ,one = @One(
+            select = "database.exp.aa.mapper.StudentMapper.queryStudentById"
+        ))
+    })
+    List<RecordExStudent> queryRecordsByCourseId(@Param("courseId") int courseId);
 }

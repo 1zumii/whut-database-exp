@@ -21,4 +21,9 @@ public class StatisticsController {
     public AaResponse<Map<String,Object>> queryStudentRecords(@RequestBody JSONObject parameters){
         return statisticsService.queryRecordsByUserId(parameters);
     }
+
+    @PostMapping("/query-courseRecords")
+    public AaResponse<Map<String,Object>> queryCourseRecords(@RequestBody JSONObject parameters){
+        return statisticsService.queryRecordsByCourseId(parameters);
+    }
 }

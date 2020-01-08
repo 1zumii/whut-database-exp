@@ -96,10 +96,39 @@
     - users
 1. classes表
 
-|字段名|类型|长度|小数点|not null|主键|备注|
-|:--|:-:|:-:|:-:|:-:|:-:|:--|
-|id|tinyint|4|0|√|||
-|className|varchar|255|0|√||班级名|
-|major|varchar|255|0|√||专业|
-|classSize|int|11|0|√||班级人数|
-|monitor|tinyint|4|0|√||班长的学生ID|
+    *班级信息*
+    |字段名|类型|长度|小数点|not null|主键|备注|
+    |:--|:-:|:-:|:-:|:-:|:-:|:--|
+    |id|tinyint|4|0|√|√||
+    |className|varchar|255|0|√||班级名|
+    |major|varchar|255|0|√||专业|
+    |classSize|int|11|0|√||班级人数|
+    |monitor|tinyint|4|0|√||班长的学生ID|
+
+2. courses表
+
+    *课程信息*
+    |字段名|类型|长度|小数点|not null|主键|备注|
+    |:--|:-:|:-:|:-:|:-:|:-:|:--|
+    |id|tinyint|4|0|√|√||
+    |courseName|varchar|255|0|√||班级名称|
+    |teacher|varchar|255|0|√||教师名字|
+    |dayIndex|tinyint|4|0|√||星期天为1|
+    |courseIndex|tinyint|4|0|√||第一大节为1|
+
+3. records表
+
+    *打卡记录*
+    |字段名|类型|长度|小数点|not null|主键|备注|
+    |:--|:-:|:-:|:-:|:-:|:-:|:--|
+    |time|timestamp|0|0|√||打卡时间的时间戳|
+    |userId|tinyint|4|0|√||打卡的学生的id|
+    |courseId|tinyint|4|0|√||打卡的课堂的id|
+
+4. stu_crs_map表
+
+    *学生和班级的对应map*
+    |字段名|类型|长度|小数点|not null|主键|
+    |:--|:-:|:-:|:-:|:-:|:-:|
+    |studentId|tinyint|4|0|√||
+    |courseId|tinyint|4|0|√||

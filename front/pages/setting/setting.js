@@ -9,9 +9,9 @@ Page({
 	 */
 	data: {
 		//state
-		isAdmin: getUserToken().isAdmin,
-		newUsername: getUserToken().userInfo.username,
-		newPassword: getUserToken().userInfo.password,
+		isAdmin: getUserToken()?getUserToken().isAdmin:null,
+		newUsername: getUserToken()?getUserToken().userInfo.username:null,
+		newPassword: getUserToken()?getUserToken().userInfo.password:null,
 		newCheckPassword: '',
 		//display
 		user: getUserToken(),

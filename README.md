@@ -18,9 +18,88 @@
 - 小组演讲要求
     - 每个小组完成10分钟的PPT演讲展示，包括应用背景、系统数据库设计、系统功能设计等，并提供demo演示
     - 一定要说明具体的分工
-# 
+---
 ## 项目介绍：基于SpringBoot的考勤助手小程序
 #### 一、项目依赖
 - MySQL 8.0
 - JDK 1.8
 - SpringBoot 2.2.2
+#### 二、IDE相关
+- IntelliJ IDEA 2018.2.5
+- IDEA插件：Lombok plugin
+#### 三、Maven依赖
+```xml
+<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.20</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.0-jre</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
+    </dependencies>
+```
+#### 四、数据库相关
+- 数据库：`aa`<br/>
+详细配置见resource目录下的`application.yml`中<br/>
+    ```
+    url: jdbc:mysql://127.0.0.1:3306/aa?serverTimezone=GMT%2B8
+    ```
+- 数据库表
+    - classes
+    - courses
+    - records
+    - stu_crs_map
+    - students
+    - users
+1. classes表
+
+|字段名|类型|长度|小数点|not null|主键|备注|
+|:--|:-:|:-:|:-:|:-:|:-:|:--|
+|id|tinyint|4|0|√|||
+|className|varchar|255|0|√||班级名|
+|major|varchar|255|0|√||专业|
+|classSize|int|11|0|√||班级人数|
+|monitor|tinyint|4|0|√||班长的学生ID|

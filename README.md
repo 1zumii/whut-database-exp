@@ -84,7 +84,7 @@
 #### 四、数据库相关
 - 数据库：`aa`<br/>
 详细配置见resource目录下的`application.yml`中<br/>
-    ```
+    ```yml
     url: jdbc:mysql://127.0.0.1:3306/aa?serverTimezone=GMT%2B8
     ```
 - 数据库表
@@ -132,3 +132,26 @@
     |:--|:-:|:-:|:-:|:-:|:-:|
     |studentId|tinyint|4|0|√||
     |courseId|tinyint|4|0|√||
+
+5. students表
+
+    *学生信息*
+    |字段名|类型|长度|小数点|not null|主键|备注|
+    |:--|:-:|:-:|:-:|:-:|:-:|:--|
+    |id|tinyint|4|0|√|√||
+    |stuNum|varchar|255|0|√||学号|
+    |name|varchar|255|0|√||学生姓名|
+    |gender|tinyint|4|0|√||male = 1|
+    |phone|varchar|255|0|√||联系方式|
+    |classId|tinyint|4|0|√||对应班级的ID|
+
+6. users表
+
+    *用户信息*
+    |字段名|类型|长度|小数点|not null|主键|备注|
+    |:--|:-:|:-:|:-:|:-:|:-:|:--|
+    |id|tinyint|4|0|√|√||
+    |username|varchar|255|0|√||用户名|
+    |password|varchar|255|0|√||密码|
+    |studentId|tinyint|4|0|√||对应学生的ID|
+    |avatar|varchar|255|0|||绑定微信用户信息头像的url|

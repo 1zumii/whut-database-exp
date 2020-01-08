@@ -1,5 +1,4 @@
 # 数据库系统综合实验 - Attendance Assistant
-[toc]
 
 ## 实验介绍：数据库应用开发大作业
 
